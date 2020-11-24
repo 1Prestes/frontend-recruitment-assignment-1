@@ -64,14 +64,14 @@ const LoadingBar = styled.div(
   `,
 )
 
-const formatStats = ({ repos, gists }) => [
+const formatStats = ({ repos, public_gists }) => [
   {
     icon: <RepositoryIcon />,
     value: repos,
   },
   {
     icon: <GistIcon />,
-    value: gists,
+    value: public_gists,
   },
 ]
 
@@ -99,20 +99,22 @@ const Assignment = () => {
       <LoadingBar isLoading={loading} />
       <Title200>Github users</Title200>
       <CardGrid data-testid="card_grid" ref={listRef}>
-        {users.map((user, i) => (
-          <Card
-            overline={user.name}
-            title={user.login}
-            description={user.bio}
-            stats={formatStats(user)}
-            image={<img src={user.avatar} alt={user.login} />}
-            key={user.login}
-            data-testid={`card_${i}`}
-            onClick={() => {
-              handleUserClick(user.login)
-            }}
-          />
-        ))}
+        {users.map((user, i) => {
+          return (
+            <Card
+              overline={user.name}
+              title={user.login}
+              description={user.bio}
+              stats={formatStats(user)}
+              image={<img src={user.avatar} alt={user.login} />}
+              key={user.login}
+              data-testid={`card_${i}`}
+              onClick={() => {
+                handleUserClick(user.login)
+              }}
+            />
+          )
+        })}
       </CardGrid>
     </Container>
   )
