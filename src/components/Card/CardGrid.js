@@ -13,6 +13,14 @@ const Container = styled.div(
     row-gap: ${spacing(3)};
     margin-bottom: ${spacing(3)};
 
+    -ms-overflow-style: none; // IE and Edge
+    scrollbar-width: none; // Firefox
+
+    // Hide scrollbar for Chrome, Safari and Opera
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
     ${media.sm`
       grid-template-columns: repeat(2, 1fr);
       > * {
